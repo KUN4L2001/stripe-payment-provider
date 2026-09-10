@@ -7,11 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
-    @Override
-    public CreatePaymentResponseDTO processPayment(CreatePaymentRequestDTO createPaymentRequestDTO) {
-        return CreatePaymentResponseDTO.builder()
-                .id("2")
-                .url("https//stripe:/pay")
-                .build();
-    }
+  @Override
+  public CreatePaymentResponseDTO processPayment(CreatePaymentRequestDTO createPaymentRequestDTO) {
+    return CreatePaymentResponseDTO.builder().id("2").url("https//stripe:/pay").build();
+  }
 }

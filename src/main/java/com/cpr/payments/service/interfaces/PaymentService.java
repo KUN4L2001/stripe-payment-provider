@@ -4,5 +4,5 @@ import com.cpr.payments.dto.request.CreatePaymentRequestDTO;
 import com.cpr.payments.dto.response.CreatePaymentResponseDTO;
 
 public interface PaymentService {
-    CreatePaymentResponseDTO processPayment(CreatePaymentRequestDTO createPaymentRequestDTO);
+  CreatePaymentResponseDTO processPayment(CreatePaymentRequestDTO createPaymentRequestDTO);
 }

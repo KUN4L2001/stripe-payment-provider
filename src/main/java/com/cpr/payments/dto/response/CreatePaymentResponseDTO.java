@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreatePaymentResponseDTO {
-    private String id;
-    private String url;
+  private String id;
+  private String url;
 }

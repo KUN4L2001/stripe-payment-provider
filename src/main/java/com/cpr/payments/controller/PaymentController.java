@@ -2,8 +2,6 @@ package com.cpr.payments.controller;
 
 import com.cpr.payments.dto.request.CreatePaymentRequestDTO;
 import com.cpr.payments.dto.response.CreatePaymentResponseDTO;
-import com.cpr.payments.pojo.request.CreatePaymentRequest;
-import com.cpr.payments.pojo.response.CreatePaymentResponse;
 import com.cpr.payments.service.interfaces.PaymentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,16 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PaymentController {
 
-    private final ModelMapper modelMapper;
-    private final PaymentService paymentService;
+  private final ModelMapper modelMapper;
+  private final PaymentService paymentService;
 
-    @PostMapping("/create")
-    public ResponseEntity<CreatePaymentResponse> createPayment(@RequestBody CreatePaymentRequest request){
-        CreatePaymentRequestDTO requestDTO = modelMapper.map(request, CreatePaymentRequestDTO.class);
-        CreatePaymentResponseDTO responseDTO = paymentService.processPayment(requestDTO);
-        CreatePaymentResponse response = modelMapper.map(responseDTO, CreatePaymentResponse.class);
-        return ResponseEntity.
-                status(HttpStatus.CREATED).
-                body(response);
-    }
+  @PostMapping("/create")
+  public ResponseEntity<CreatePaymentResponseDTO> createPayment(
+      @RequestBody CreatePaymentRequestDTO request) {
+    CreatePaymentResponseDTO response = paymentService.processPayment(request);
+    return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
 }
