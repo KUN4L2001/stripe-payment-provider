@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LineItemDTO {
-  private String quantity;
+  private int quantity;
   private String currency;
-  private String name;
-  private String unitAmount;
+  private String productName;
+  private long unitAmount;
 }
