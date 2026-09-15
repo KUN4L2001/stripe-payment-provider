@@ -8,7 +8,7 @@ spring:
 stripe:
   config:
     mode: payment
-    successUrl: http://localhost:8080/payment/success
-    cancelUrl: http://localhost:8080/payment/cancel
+    successUrl: http://localhost:3000/payment/success
+    cancelUrl: http://localhost:3000/payment/cancel
     createLinkAPI: https://api.stripe.com/v1/checkout/sessions
     secret-key: key
