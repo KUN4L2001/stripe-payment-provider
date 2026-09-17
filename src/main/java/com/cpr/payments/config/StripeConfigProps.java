@@ -10,5 +10,6 @@ public class StripeConfigProps {
   private String successUrl;
   private String cancelUrl;
   private String createLinkAPI;
+  private String expireLinkAPI;
   private String mode;
 }

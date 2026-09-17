@@ -5,4 +5,6 @@ import org.springframework.util.MultiValueMap;
 
 public interface RestService {
   ResponseEntity<String> post(String requestUrl, MultiValueMap<String, String> formData);
+
+  ResponseEntity<String> post(String requestUrl);
 }

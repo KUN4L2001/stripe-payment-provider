@@ -3,6 +3,7 @@ package com.cpr.payments.service.impl;
 import com.cpr.payments.config.StripeConfigProps;
 import com.cpr.payments.dto.request.CreatePaymentRequestDTO;
 import com.cpr.payments.dto.response.CreatePaymentResponseDTO;
+import com.cpr.payments.dto.response.ExpirePaymentResponseDTO;
 import com.cpr.payments.service.interfaces.PaymentService;
 import com.cpr.payments.service.interfaces.RestService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,6 +31,15 @@ public class PaymentServiceImpl implements PaymentService {
     CreatePaymentResponseDTO requestDTO =
         objectMapper.readValue(response.getBody(), CreatePaymentResponseDTO.class);
     return requestDTO;
+  }
+
+  @Override
+  public ExpirePaymentResponseDTO expirePayment(String txnId) {
+    String stripeExpireUrl = String.format(stripeConfig.getExpireLinkAPI(), txnId);
+    ResponseEntity<String> response = restService.post(stripeExpireUrl);
+    ExpirePaymentResponseDTO responseDTO =
+        objectMapper.readValue(response.getBody(), ExpirePaymentResponseDTO.class);
+    return responseDTO;
   }
 
   private MultiValueMap<String, String> getFormData(
