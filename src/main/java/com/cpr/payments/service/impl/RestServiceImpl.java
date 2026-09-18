@@ -62,4 +62,22 @@ public class RestServiceImpl implements RestService {
       throw e;
     }
   }
+
+  @Override
+  public ResponseEntity<String> get(String requestUrl) {
+    try {
+      return webClient
+          .method(HttpMethod.GET)
+          .uri(requestUrl)
+          .header(HttpHeaders.AUTHORIZATION, "Bearer " + stripeConfig.getSecretKey())
+          .retrieve()
+          .toEntity(String.class)
+          .block();
+
+    } catch (WebClientResponseException e) {
+      log.error("Stripe status: {}", e.getStatusCode());
+      log.error("Stripe response body: {}", e.getResponseBodyAsString());
+      throw e;
+    }
+  }
 }

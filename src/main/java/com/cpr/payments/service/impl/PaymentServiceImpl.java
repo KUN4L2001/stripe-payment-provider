@@ -4,6 +4,7 @@ import com.cpr.payments.config.StripeConfigProps;
 import com.cpr.payments.dto.request.CreatePaymentRequestDTO;
 import com.cpr.payments.dto.response.CreatePaymentResponseDTO;
 import com.cpr.payments.dto.response.ExpirePaymentResponseDTO;
+import com.cpr.payments.dto.response.RetrievePaymentResponseDTO;
 import com.cpr.payments.service.interfaces.PaymentService;
 import com.cpr.payments.service.interfaces.RestService;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,15 @@ public class PaymentServiceImpl implements PaymentService {
     ResponseEntity<String> response = restService.post(stripeExpireUrl);
     ExpirePaymentResponseDTO responseDTO =
         objectMapper.readValue(response.getBody(), ExpirePaymentResponseDTO.class);
+    return responseDTO;
+  }
+
+  @Override
+  public RetrievePaymentResponseDTO retrievePayment(String providerRef) {
+    String stripeRetrieveUrl = String.format(stripeConfig.getRetrieveLinkApi(), providerRef);
+    ResponseEntity<String> response = restService.get(stripeRetrieveUrl);
+    RetrievePaymentResponseDTO responseDTO =
+        objectMapper.readValue(response.getBody(), RetrievePaymentResponseDTO.class);
     return responseDTO;
   }
 

@@ -12,4 +12,5 @@ stripe:
     cancelUrl: http://localhost:3000/payment/cancel
     createLinkAPI: https://api.stripe.com/v1/checkout/sessions
     expireLinkAPI: https://api.stripe.com/v1/checkout/sessions/%s/expire
+    retrieveLinkApi: https://api.stripe.com/v1/checkout/sessions/%s
     secret-key: key

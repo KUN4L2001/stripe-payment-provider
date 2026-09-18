@@ -3,6 +3,7 @@ package com.cpr.payments.controller;
 import com.cpr.payments.dto.request.CreatePaymentRequestDTO;
 import com.cpr.payments.dto.response.CreatePaymentResponseDTO;
 import com.cpr.payments.dto.response.ExpirePaymentResponseDTO;
+import com.cpr.payments.dto.response.RetrievePaymentResponseDTO;
 import com.cpr.payments.service.interfaces.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,14 @@ public class PaymentController {
   public ResponseEntity<ExpirePaymentResponseDTO> expirePayment(@PathVariable String txnId) {
     log.info("expire called");
     ExpirePaymentResponseDTO responseDTO = paymentService.expirePayment(txnId);
+    return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
+  }
+
+  @GetMapping("/retrieve/{providerRef}")
+  public ResponseEntity<RetrievePaymentResponseDTO> retrievePayment(
+      @PathVariable String providerRef) {
+    log.info("retrieve api called");
+    RetrievePaymentResponseDTO responseDTO = paymentService.retrievePayment(providerRef);
     return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
   }
 }

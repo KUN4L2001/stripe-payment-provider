@@ -7,4 +7,6 @@ public interface RestService {
   ResponseEntity<String> post(String requestUrl, MultiValueMap<String, String> formData);
 
   ResponseEntity<String> post(String requestUrl);
+
+  ResponseEntity<String> get(String requestUrl);
 }
